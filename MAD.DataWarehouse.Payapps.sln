@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAD.DataWarehouse.Payapps", "MAD.DataWarehouse.Payapps\MAD.DataWarehouse.Payapps.csproj", "{D6AA23D0-9B90-4AF4-9F96-DE03EB6B8C7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6AA23D0-9B90-4AF4-9F96-DE03EB6B8C7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6AA23D0-9B90-4AF4-9F96-DE03EB6B8C7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6AA23D0-9B90-4AF4-9F96-DE03EB6B8C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6AA23D0-9B90-4AF4-9F96-DE03EB6B8C7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {753ECAE2-277F-4EB5-BA98-47621B60461A}
+	EndGlobalSection
+EndGlobal
