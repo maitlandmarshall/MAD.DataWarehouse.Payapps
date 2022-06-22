@@ -1,4 +1,6 @@
 ﻿using MAD.DataWarehouse.Payapps.Api;
+using MAD.DataWarehouse.Payapps.Database;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MIFCore.Settings;
 using Payapps.Api;
@@ -12,10 +14,13 @@ namespace MAD.DataWarehouse.Payapps
         public void ConfigureServices(IServiceCollection serviceDescriptors)
         {
             serviceDescriptors.AddIntegrationSettings<AppConfig>();
-
             serviceDescriptors.AddTransient<PayappsAuthDelegatingHandler>();
 
-            serviceDescriptors.AddHttpClient<OauthControllerApiClient>(this.ConfigurePaysappApiClient);
+            serviceDescriptors.AddDbContext<PayappsDbContext>((svc, opt) => opt.UseSqlServer(svc.GetRequiredService<AppConfig>().ConnectionString));
+
+            serviceDescriptors
+                .AddHttpClient<OauthControllerApiClient>(this.ConfigurePaysappApiClient);
+
             serviceDescriptors
                 .AddHttpClient<ProjectsControllerApiClient>(this.ConfigurePaysappApiClient)
                 .AddHttpMessageHandler<PayappsAuthDelegatingHandler>();
@@ -28,6 +33,11 @@ namespace MAD.DataWarehouse.Payapps
         public void Configure()
         {
 
+        }
+
+        public void PostConfigure(PayappsDbContext dbContext)
+        {
+            dbContext.Database.Migrate();
         }
 
         private void ConfigurePaysappApiClient(HttpClient httpClient)
