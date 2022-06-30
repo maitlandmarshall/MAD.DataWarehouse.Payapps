@@ -44,14 +44,12 @@ namespace MAD.DataWarehouse.Payapps.Jobs
 
         public async Task ConsumePayapp(double id)
         {
-            throw new NotImplementedException();
+            using var db = await this.dbContextFactory.CreateDbContextAsync();
+            var payapp = await this.apiClient.GetPayappAsync(id);
 
-            //using var db = await this.dbContextFactory.CreateDbContextAsync();
-            //var project = await this.apiClient.GetProjectAsync(id);
+            db.Upsert(payapp);
 
-            //db.Upsert(project);
-
-            //await db.SaveChangesAsync();
+            await db.SaveChangesAsync();
         }
     }
 }
