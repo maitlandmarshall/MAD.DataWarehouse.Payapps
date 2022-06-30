@@ -4,6 +4,7 @@ using MAD.DataWarehouse.Payapps.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MAD.DataWarehouse.Payapps.Migrations
 {
     [DbContext(typeof(PayappsDbContext))]
-    partial class PayappsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220630014342_AddTable_PayappsListItemDto")]
+    partial class AddTable_PayappsListItemDto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

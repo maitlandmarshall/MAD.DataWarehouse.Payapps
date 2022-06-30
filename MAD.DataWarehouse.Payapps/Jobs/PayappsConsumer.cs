@@ -1,5 +1,6 @@
 ﻿using Hangfire;
 using MAD.DataWarehouse.Payapps.Database;
+using MAD.Extensions.EFCore;
 using Microsoft.EntityFrameworkCore;
 using Payapps.Api;
 using System;
@@ -26,21 +27,31 @@ namespace MAD.DataWarehouse.Payapps.Jobs
         public async Task EnqueuePayappsForConsumer()
         {
             var payapps = await this.apiClient.GetPayappsAsync(project_id: null, start_date: null, end_date: null, claim_status: PayappStatusGroupEnum.All);
+            using var db = await this.dbContextFactory.CreateDbContextAsync();
 
             foreach (var p in payapps)
             {
-                this.backgroundJobClient.Enqueue<ProjectConsumer>(y => y.ConsumeProject(p.Id));
+                db.Upsert(p);
+            }
+
+            await db.SaveChangesAsync();
+
+            foreach (var p in payapps)
+            {
+                this.backgroundJobClient.Enqueue<PayappsConsumer>(y => y.ConsumePayapp(p.Claim_id));
             }
         }
 
-        public async Task ConsumeProject(double id)
+        public async Task ConsumePayapp(double id)
         {
-            using var db = await this.dbContextFactory.CreateDbContextAsync();
-            var project = await this.apiClient.GetProjectAsync(id);
+            throw new NotImplementedException();
 
-            db.Upsert(project);
+            //using var db = await this.dbContextFactory.CreateDbContextAsync();
+            //var project = await this.apiClient.GetProjectAsync(id);
 
-            await db.SaveChangesAsync();
+            //db.Upsert(project);
+
+            //await db.SaveChangesAsync();
         }
     }
 }

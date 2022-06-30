@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Payapps.Api
 {
-    public partial class ProjectsControllerApiClient
+    public partial class PayappsControllerApiClient
     {
         partial void UpdateJsonSerializerSettings(JsonSerializerSettings settings)
         {

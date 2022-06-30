@@ -8,7 +8,9 @@ namespace MAD.DataWarehouse.Payapps.Database
     {
         public void Configure(EntityTypeBuilder<PayappsListItemDto> builder)
         {
-
+            builder.HasKey(y => y.Claim_id);
+            builder.Property(y => y.Counterparty_role).HasJsonConversion();
+            builder.Property(y => y.AdditionalProperties).HasJsonConversion();
         }
     }
 }

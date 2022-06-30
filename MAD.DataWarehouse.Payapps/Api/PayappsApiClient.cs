@@ -5866,195 +5866,178 @@ namespace Payapps.Api
     public partial class PayappsListItemDto
     {
         [Newtonsoft.Json.JsonProperty("external_integration_key_primary", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string External_integration_key_primary { get; set; }
 
         [Newtonsoft.Json.JsonProperty("project_ref", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Project_ref { get; set; }
 
         [Newtonsoft.Json.JsonProperty("project_name", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Project_name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("contract_id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Contract_id { get; set; }
+        public double? Contract_id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("contract_ref", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Contract_ref { get; set; }
 
         [Newtonsoft.Json.JsonProperty("contract_name", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Contract_name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("country", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Country { get; set; }
 
         [Newtonsoft.Json.JsonProperty("vat_reverse_charge_ind", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool Vat_reverse_charge_ind { get; set; }
+        public bool? Vat_reverse_charge_ind { get; set; }
 
         [Newtonsoft.Json.JsonProperty("counterparty_role", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public object Counterparty_role { get; set; } = new object();
+        public object Counterparty_role { get; set; }
 
         [Newtonsoft.Json.JsonProperty("counterparty_name", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Counterparty_name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("claim_status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Claim_status { get; set; }
 
         [Newtonsoft.Json.JsonProperty("claim_id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Claim_id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("claim_seq_no", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Claim_seq_no { get; set; }
+        public double? Claim_seq_no { get; set; }
 
         [Newtonsoft.Json.JsonProperty("claimant_invoice_ref", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Claimant_invoice_ref { get; set; }
 
         [Newtonsoft.Json.JsonProperty("retention_to_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Retention_to_date { get; set; }
+        public double? Retention_to_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("discount_calc", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Discount_calc { get; set; }
+        public double? Discount_calc { get; set; }
 
         [Newtonsoft.Json.JsonProperty("discount_calc_at_approved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Discount_calc_at_approved { get; set; }
+        public double? Discount_calc_at_approved { get; set; }
 
         [Newtonsoft.Json.JsonProperty("labour_claimed_to_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Labour_claimed_to_date { get; set; }
+        public double? Labour_claimed_to_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("labour_approved_to_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Labour_approved_to_date { get; set; }
+        public double? Labour_approved_to_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("claim_as_at", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Claim_as_at { get; set; }
 
         [Newtonsoft.Json.JsonProperty("submitted_at", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Submitted_at { get; set; }
 
         [Newtonsoft.Json.JsonProperty("approved_at", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Approved_at { get; set; }
 
         [Newtonsoft.Json.JsonProperty("approval_due_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Approval_due_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("payment_due_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Payment_due_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("final_payment_due_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Final_payment_due_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lines_claimed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Lines_claimed { get; set; }
+        public double? Lines_claimed { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lines_approved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Lines_approved { get; set; }
+        public double? Lines_approved { get; set; }
 
         [Newtonsoft.Json.JsonProperty("materials_claimed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Materials_claimed { get; set; }
+        public double? Materials_claimed { get; set; }
 
         [Newtonsoft.Json.JsonProperty("materials_approved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Materials_approved { get; set; }
+        public double? Materials_approved { get; set; }
 
         [Newtonsoft.Json.JsonProperty("contra_this_approve", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Contra_this_approve { get; set; }
+        public double? Contra_this_approve { get; set; }
 
         [Newtonsoft.Json.JsonProperty("contra_approved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Contra_approved { get; set; }
+        public double? Contra_approved { get; set; }
 
         [Newtonsoft.Json.JsonProperty("tax_this_claim_submitted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Tax_this_claim_submitted { get; set; }
+        public double? Tax_this_claim_submitted { get; set; }
 
         [Newtonsoft.Json.JsonProperty("pln_is_draft", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool Pln_is_draft { get; set; }
+        public bool? Pln_is_draft { get; set; }
 
         [Newtonsoft.Json.JsonProperty("pln_variance_this_claim", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Pln_variance_this_claim { get; set; }
+        public double? Pln_variance_this_claim { get; set; }
 
         [Newtonsoft.Json.JsonProperty("pp_status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Pp_status { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lines_this_claim", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Lines_this_claim { get; set; }
+        public double? Lines_this_claim { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lines_this_approve", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Lines_this_approve { get; set; }
+        public double? Lines_this_approve { get; set; }
 
         [Newtonsoft.Json.JsonProperty("discount_this_claim", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Discount_this_claim { get; set; }
+        public double? Discount_this_claim { get; set; }
 
         [Newtonsoft.Json.JsonProperty("previous_discount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Previous_discount { get; set; }
+        public double? Previous_discount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("retention_claimed_this_claim", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Retention_claimed_this_claim { get; set; }
+        public double? Retention_claimed_this_claim { get; set; }
 
         [Newtonsoft.Json.JsonProperty("retention_approved_this_claim", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Retention_approved_this_claim { get; set; }
+        public double? Retention_approved_this_claim { get; set; }
 
         [Newtonsoft.Json.JsonProperty("previous_retention", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Previous_retention { get; set; }
+        public double? Previous_retention { get; set; }
 
         [Newtonsoft.Json.JsonProperty("variations_this_claim", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Variations_this_claim { get; set; }
+        public double? Variations_this_claim { get; set; }
 
         [Newtonsoft.Json.JsonProperty("materials_this_claim", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Materials_this_claim { get; set; }
+        public double? Materials_this_claim { get; set; }
 
         [Newtonsoft.Json.JsonProperty("materials_this_approve", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Materials_this_approve { get; set; }
+        public double? Materials_this_approve { get; set; }
 
         [Newtonsoft.Json.JsonProperty("tax_this_claim_approved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Tax_this_claim_approved { get; set; }
+        public double? Tax_this_claim_approved { get; set; }
 
         [Newtonsoft.Json.JsonProperty("claimed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Claimed { get; set; }
+        public double? Claimed { get; set; }
 
         [Newtonsoft.Json.JsonProperty("assessed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Assessed { get; set; }
+        public double? Assessed { get; set; }
 
         [Newtonsoft.Json.JsonProperty("gross_approved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Gross_approved { get; set; }
+        public double? Gross_approved { get; set; }
 
         [Newtonsoft.Json.JsonProperty("non_labour_to_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Non_labour_to_date { get; set; }
+        public double? Non_labour_to_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("net_approved_to_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Net_approved_to_date { get; set; }
+        public double? Net_approved_to_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("previous_gross_approved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Previous_gross_approved { get; set; }
+        public double? Previous_gross_approved { get; set; }
 
         [Newtonsoft.Json.JsonProperty("previous_net_approved_to_date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Previous_net_approved_to_date { get; set; }
+        public double? Previous_net_approved_to_date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("net_approved_before_taxes", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Net_approved_before_taxes { get; set; }
+        public double? Net_approved_before_taxes { get; set; }
 
         [Newtonsoft.Json.JsonProperty("discounted_total_this_claim", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Discounted_total_this_claim { get; set; }
+        public double? Discounted_total_this_claim { get; set; }
 
         [Newtonsoft.Json.JsonProperty("sc_total_projected_amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Sc_total_projected_amount { get; set; }
+        public double? Sc_total_projected_amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("mc_total_projected_amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Mc_total_projected_amount { get; set; }
+        public double? Mc_total_projected_amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("varations_this_approve", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Varations_this_approve { get; set; }
+        public double? Varations_this_approve { get; set; }
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

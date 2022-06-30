@@ -33,6 +33,7 @@ namespace MAD.DataWarehouse.Payapps
                 .AddHttpMessageHandler<PayappsAuthDelegatingHandler>();
 
             serviceDescriptors.AddScoped<ProjectConsumer>();
+            serviceDescriptors.AddScoped<PayappsConsumer>();
         }
 
         public void Configure()
@@ -45,6 +46,7 @@ namespace MAD.DataWarehouse.Payapps
             dbContext.Database.Migrate();
 
             recurringJobManager.CreateRecurringJob<ProjectConsumer>("enqueue-projects", y => y.EnqueueProjectsForConsumer());
+            recurringJobManager.CreateRecurringJob<PayappsConsumer>("enqueue-payapps", y => y.EnqueuePayappsForConsumer());
         }
 
         private void ConfigurePaysappApiClient(HttpClient httpClient)
