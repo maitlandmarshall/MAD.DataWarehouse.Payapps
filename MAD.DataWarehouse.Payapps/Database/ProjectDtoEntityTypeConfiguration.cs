@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MAD.DataWarehouse.Payapps.Database
 {
-    internal class ProjectEntityTypeConfiguration : IEntityTypeConfiguration<ProjectDto>
+    internal class ProjectDtoEntityTypeConfiguration : IEntityTypeConfiguration<ProjectDto>
     {
         public void Configure(EntityTypeBuilder<ProjectDto> builder)
         {

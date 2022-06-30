@@ -1,7 +1,10 @@
-﻿using MAD.DataWarehouse.Payapps.Api;
+﻿using Hangfire;
+using MAD.DataWarehouse.Payapps.Api;
 using MAD.DataWarehouse.Payapps.Database;
+using MAD.DataWarehouse.Payapps.Jobs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MIFCore.Hangfire;
 using MIFCore.Settings;
 using Payapps.Api;
 using System;
@@ -16,7 +19,7 @@ namespace MAD.DataWarehouse.Payapps
             serviceDescriptors.AddIntegrationSettings<AppConfig>();
             serviceDescriptors.AddTransient<PayappsAuthDelegatingHandler>();
 
-            serviceDescriptors.AddDbContext<PayappsDbContext>((svc, opt) => opt.UseSqlServer(svc.GetRequiredService<AppConfig>().ConnectionString));
+            serviceDescriptors.AddDbContextFactory<PayappsDbContext>((svc, opt) => opt.UseSqlServer(svc.GetRequiredService<AppConfig>().ConnectionString));
 
             serviceDescriptors
                 .AddHttpClient<OauthControllerApiClient>(this.ConfigurePaysappApiClient);
@@ -28,6 +31,8 @@ namespace MAD.DataWarehouse.Payapps
             serviceDescriptors
                 .AddHttpClient<PayappsControllerApiClient>(this.ConfigurePaysappApiClient)
                 .AddHttpMessageHandler<PayappsAuthDelegatingHandler>();
+
+            serviceDescriptors.AddScoped<ProjectConsumer>();
         }
 
         public void Configure()
@@ -35,9 +40,11 @@ namespace MAD.DataWarehouse.Payapps
 
         }
 
-        public void PostConfigure(PayappsDbContext dbContext)
+        public void PostConfigure(PayappsDbContext dbContext, IRecurringJobManager recurringJobManager)
         {
             dbContext.Database.Migrate();
+
+            recurringJobManager.CreateRecurringJob<ProjectConsumer>("enqueue-projects", y => y.EnqueueProjectsForConsumer());
         }
 
         private void ConfigurePaysappApiClient(HttpClient httpClient)

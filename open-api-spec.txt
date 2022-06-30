@@ -1,0 +1,5722 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/v1/oauth/token": {
+      "post": {
+        "operationId": "OauthController_getToken",
+        "summary": "Oauth token",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "base64string",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "application/x-www-form-urlencoded",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Get a token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Oauth"
+        ]
+      }
+    },
+    "/v1/oauth/refresh-token": {
+      "post": {
+        "operationId": "OauthController_getRefreshToken",
+        "summary": "Oauth refresh token",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "base64string",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "application/x-www-form-urlencoded",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Get a token from refresh token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Oauth"
+        ]
+      }
+    },
+    "/v1/auth/me": {
+      "get": {
+        "operationId": "AuthController_getLoggedUser",
+        "summary": "User details",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get contract",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/organisations/search": {
+      "get": {
+        "operationId": "OrganisationsController_getSearchOrganisations",
+        "summary": "Organisations search",
+        "parameters": [
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "business_number",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search organisations"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Organisations"
+        ]
+      }
+    },
+    "/v1/organisations/counterparties": {
+      "get": {
+        "operationId": "OrganisationsController_getCounterparties",
+        "summary": "Get counterparties",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get project list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CounterpartiesDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Organisations"
+        ]
+      }
+    },
+    "/v1/organisations/users": {
+      "get": {
+        "operationId": "OrganisationsController_getUsers",
+        "summary": "Get organisation users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get organisation users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrganisationUserDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Organisations"
+        ]
+      }
+    },
+    "/v1/projects": {
+      "get": {
+        "operationId": "ProjectsController_getAllProjects",
+        "summary": "Get project list",
+        "description": "loading...",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get project list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectSummaryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      },
+      "post": {
+        "operationId": "ProjectsController_postProject",
+        "summary": "Project create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create new project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v1/projects/search": {
+      "get": {
+        "operationId": "ProjectsController_getSearchProjects",
+        "summary": "Project search",
+        "parameters": [
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "project_ref",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "external_integration_key_primary",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "external_integration_key_secondary",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search projects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectSummaryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v1/projects/{id}": {
+      "get": {
+        "operationId": "ProjectsController_getProject",
+        "summary": "Project details",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      },
+      "patch": {
+        "operationId": "ProjectsController_patchProject",
+        "summary": "Project update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update a project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v1/projects/{id}/summary": {
+      "get": {
+        "operationId": "ProjectsController_getProjectSummary",
+        "summary": "Project summary",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get project summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectSummaryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v1/projects/{id}/contracts": {
+      "get": {
+        "operationId": "ProjectsController_getProjectContracts",
+        "summary": "Project contracts",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get project contract list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectContractsDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v1/projects/{id}/payapps/{status}": {
+      "get": {
+        "operationId": "ProjectsController_getProjectClaims",
+        "summary": "Project payapps",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "pending"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get project payapps list"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v1/contracts": {
+      "post": {
+        "operationId": "ContractsController_postContract",
+        "summary": "Contract create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create new contract"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}": {
+      "get": {
+        "operationId": "ContractsController_getContract",
+        "summary": "Contract details",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get contract",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      },
+      "patch": {
+        "operationId": "ContractsController_patchContract",
+        "summary": "Contract update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update a contract",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}/summary": {
+      "get": {
+        "operationId": "ContractsController_getContractSummary",
+        "summary": "Contract summary",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get contract summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractSummaryDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}/payapps": {
+      "get": {
+        "operationId": "ContractsController_getContractPayapps",
+        "summary": "Contract payapps",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get contract payapps",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PayappsListDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}/link": {
+      "patch": {
+        "operationId": "ContractsController_patchLinkContract",
+        "summary": "Link contract",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractLinkDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Link contract",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}/variations/{contractline_id}": {
+      "put": {
+        "operationId": "ContractsController_putContractVariation",
+        "summary": "Contract variation",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "contractline_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractVariationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update contract variation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractVariationDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}/contractlines": {
+      "get": {
+        "operationId": "ContractsController_getContractLines",
+        "summary": "Contractlines",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "include_deleted",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "approval_status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "APPROVED",
+                "PENDING",
+                "REJECTED"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get contract lines",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractLineDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}/variations": {
+      "put": {
+        "operationId": "ContractsController_putContractVariations",
+        "summary": "Contract variations",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractVariationsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update contract variations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}/lineitems": {
+      "put": {
+        "operationId": "ContractsController_putContractLineitems",
+        "summary": "Contract lineitems",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractLineitemsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update contract lineitems",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/contracts/{id}/publish": {
+      "put": {
+        "operationId": "ContractsController_putContractPublish",
+        "summary": "Publish Contract",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractPublishDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Publish contract",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Contracts"
+        ]
+      }
+    },
+    "/v1/payapps": {
+      "get": {
+        "operationId": "PayappsController_getPayapps",
+        "summary": "Get all payapps",
+        "parameters": [
+          {
+            "name": "project_id",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "start_date",
+            "required": false,
+            "in": "query",
+            "description": "yyyy-mm-dd",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_date",
+            "required": false,
+            "in": "query",
+            "description": "yyyy-mm-dd",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "claim_status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/PayappStatusGroupEnum"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all payapps",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PayappsListItemDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Payapps"
+        ]
+      }
+    },
+    "/v1/payapps/{id}": {
+      "get": {
+        "operationId": "PayappsController_getPayapp",
+        "summary": "Payapp details",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get payapp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayappDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Payapps"
+        ]
+      }
+    },
+    "/v1/payapps/{id}/invoice": {
+      "get": {
+        "operationId": "PayappsController_getPayappInvoice",
+        "summary": "Payapp invoice",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get payapp invoice",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayappsInvoiceDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "tags": [
+          "Payapps"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Payapps Public API Documentation",
+    "description": "Payapps API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "Payapps Public API Documentation",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "TokenRequestDto": {
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "enum": [
+              "password",
+              "client_credentials"
+            ],
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "grant_type",
+          "username",
+          "password"
+        ]
+      },
+      "TokenResponseDto": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "accessTokenExpiresAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "refreshTokenExpiresAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "accessToken",
+          "accessTokenExpiresAt",
+          "refreshToken",
+          "refreshTokenExpiresAt"
+        ]
+      },
+      "RefreshTokenRequestDto": {
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "enum": [
+              "refresh_token"
+            ],
+            "type": "string"
+          },
+          "refresh_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "grant_type",
+          "refresh_token"
+        ]
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "organisation_id": {
+            "type": "number"
+          },
+          "token": {
+            "type": "string"
+          },
+          "organisation": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email",
+          "organisation_id",
+          "token",
+          "organisation"
+        ]
+      },
+      "CounterpartiesDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "md_name": {
+            "type": "string"
+          },
+          "md_phone": {
+            "type": "string"
+          },
+          "md_email": {
+            "type": "string"
+          },
+          "business_number": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "created_by_org": {
+            "type": "number"
+          },
+          "counterparty_role": {
+            "type": "string"
+          },
+          "user_organisation": {
+            "type": "boolean"
+          },
+          "num_contracts": {
+            "type": "number"
+          },
+          "value_contracts": {
+            "type": "number"
+          },
+          "num_pending_claims": {
+            "type": "number"
+          },
+          "value_pending_claims": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "md_name",
+          "md_phone",
+          "md_email",
+          "business_number",
+          "address1",
+          "address2",
+          "city",
+          "province",
+          "postcode",
+          "country",
+          "created_by_org",
+          "counterparty_role",
+          "user_organisation",
+          "num_contracts",
+          "value_contracts",
+          "num_pending_claims",
+          "value_pending_claims"
+        ]
+      },
+      "OrganisationUserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "organisation_id": {
+            "type": "number"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "mobile_phone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "permissions": {
+            "type": "string"
+          },
+          "login_count": {
+            "type": "number"
+          },
+          "primary_contact_count": {
+            "type": "number"
+          },
+          "authority_limit": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "disabled_at": {
+            "type": "string"
+          },
+          "accepted_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "organisation_id",
+          "first_name",
+          "last_name",
+          "email",
+          "mobile_phone",
+          "status",
+          "permissions",
+          "login_count",
+          "primary_contact_count",
+          "authority_limit",
+          "created_at",
+          "disabled_at",
+          "accepted_at"
+        ]
+      },
+      "ProjectSummaryDto": {
+        "type": "object",
+        "properties": {
+          "included_contra_charges": {
+            "type": "number"
+          },
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project_ref": {
+            "type": "string"
+          },
+          "number_of_contracts": {
+            "type": "number"
+          },
+          "approved_to_date": {
+            "type": "number"
+          },
+          "total_works": {
+            "type": "number"
+          },
+          "percentage_complete": {
+            "type": "number"
+          },
+          "included_variations": {
+            "type": "number"
+          },
+          "retention_receivable": {
+            "type": "number"
+          },
+          "retention_payable": {
+            "type": "number"
+          },
+          "num_draft_contracts": {
+            "type": "number"
+          },
+          "num_draft_claims": {
+            "type": "number"
+          },
+          "num_pending_claims": {
+            "type": "number"
+          },
+          "num_overdue_claims": {
+            "type": "number"
+          },
+          "num_pln_approved": {
+            "type": "number"
+          },
+          "num_pln_draft": {
+            "type": "number"
+          },
+          "archived_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "deleted_at": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "included_contra_charges",
+          "id",
+          "name",
+          "project_ref",
+          "number_of_contracts",
+          "approved_to_date",
+          "total_works",
+          "percentage_complete",
+          "included_variations",
+          "retention_receivable",
+          "retention_payable",
+          "num_draft_contracts",
+          "num_draft_claims",
+          "num_pending_claims",
+          "num_overdue_claims",
+          "num_pln_approved",
+          "num_pln_draft",
+          "archived_at",
+          "deleted_at"
+        ]
+      },
+      "ProjectAddressDto": {
+        "type": "object",
+        "properties": {
+          "address_line_1": {
+            "type": "string"
+          },
+          "address_line_2": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address_line_1",
+          "city"
+        ]
+      },
+      "ProjectUsersDto": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "VIEW PROJECT",
+                "PROJECT MEMBER",
+                "RECEIVE CLAIM SUBMISSION REMINDER EMAILS",
+                "RECEIVE CLAIM SUBMISSION NOTIFICATION EMAILS",
+                "PRIMARY CONTACT PERSON",
+                "CREATE CONTRACTS",
+                "APPROVE CLAIMS",
+                "SUBMIT CLAIMS",
+                "RECEIVE CLAIM APPROVAL REMINDER EMAILS",
+                "RECIEVE CLAIM APPROVAL NOTIFICATION EMAILS"
+              ]
+            },
+            "description": "List of permissions"
+          },
+          "id": {
+            "type": "number"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "permissions",
+          "id",
+          "sequence"
+        ]
+      },
+      "ProjectCategoryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectUsersDto"
+            }
+          },
+          "project_category_name": {
+            "type": "string"
+          },
+          "contract_count": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "users",
+          "project_category_name"
+        ]
+      },
+      "ProjectPermissionsDto": {
+        "type": "object",
+        "properties": {
+          "project_categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectCategoryDto"
+            }
+          }
+        },
+        "required": [
+          "project_categories"
+        ]
+      },
+      "ProjectClaimScheduleDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Use negative number for new schedule."
+          },
+          "due_date": {
+            "type": "string"
+          },
+          "end_date": {
+            "type": "string"
+          },
+          "reminder_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "due_date",
+          "end_date",
+          "reminder_date"
+        ]
+      },
+      "ProjectClaimCycleDto": {
+        "type": "object",
+        "properties": {
+          "claim_schedules": {
+            "description": "Only required if reminder_schedule = CUSTOM; Remove items from the list to delete them;",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectClaimScheduleDto"
+            }
+          },
+          "fortnightly_start_date": {
+            "type": "object",
+            "description": "Only relevant if reminder_schedule is FORTNIGHTLY"
+          },
+          "reminder_days_pre_due_date": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Only relevant if reminder_schedule is FORTNIGHTLY"
+          },
+          "period_end_from_due_date": {
+            "type": "number",
+            "description": "Only relevant if reminder_schedule is FORTNIGHTLY"
+          },
+          "reminder_schedule": {
+            "type": "string",
+            "enum": [
+              "MONTHLY",
+              "FORTNIGHTLY",
+              "CUSTOM"
+            ]
+          },
+          "reminder_day_of_month": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 31
+          },
+          "period_end_day_of_month": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 31
+          },
+          "claim_due_day_of_month": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 31
+          }
+        },
+        "required": [
+          "reminder_schedule",
+          "reminder_day_of_month",
+          "period_end_day_of_month",
+          "claim_due_day_of_month"
+        ]
+      },
+      "ProjectDto": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/ProjectAddressDto"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/ProjectPermissionsDto"
+          },
+          "claim_cycle": {
+            "$ref": "#/components/schemas/ProjectClaimCycleDto"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "project_ref": {
+            "type": "string"
+          },
+          "id": {
+            "type": "number"
+          },
+          "commencement_date": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "completion_date": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "external_integration_key_secondary": {
+            "type": "string"
+          },
+          "enforce_approval_seq_ind": {
+            "type": "boolean"
+          },
+          "authority_limits_enabled_ind": {
+            "type": "boolean"
+          },
+          "multiapproval_ind": {
+            "type": "boolean"
+          },
+          "deleted_at": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "permissions",
+          "claim_cycle",
+          "name",
+          "tax_rate",
+          "project_ref",
+          "id",
+          "commencement_date",
+          "completion_date",
+          "external_integration_key_primary",
+          "external_integration_key_secondary",
+          "enforce_approval_seq_ind",
+          "authority_limits_enabled_ind",
+          "multiapproval_ind",
+          "deleted_at"
+        ]
+      },
+      "ProjectContractsDto": {
+        "type": "object",
+        "properties": {
+          "contract_ref": {
+            "type": "string",
+            "description": "Contract reference"
+          },
+          "status": {
+            "enum": [
+              "DRAFT",
+              "ACTIVE",
+              "DELETED",
+              "ARCHIVE"
+            ],
+            "type": "string",
+            "description": "List of contract statuses"
+          },
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "number"
+          },
+          "counterparty": {
+            "type": "string"
+          },
+          "project_name": {
+            "type": "number"
+          },
+          "approved_to_date": {
+            "type": "number"
+          },
+          "total_works": {
+            "type": "number"
+          },
+          "percentage_complete": {
+            "type": "number"
+          },
+          "my_role": {
+            "type": "string"
+          },
+          "draft_claim": {
+            "type": "boolean"
+          },
+          "number_of_claims": {
+            "type": "number"
+          },
+          "prac_complete_ind": {
+            "type": "boolean"
+          },
+          "final_complete_ind": {
+            "type": "boolean"
+          },
+          "claim_pc_ind": {
+            "type": "boolean"
+          },
+          "claim_fc_ind": {
+            "type": "boolean"
+          },
+          "self_assess_ind": {
+            "type": "boolean"
+          },
+          "variable_budget_ind": {
+            "type": "boolean"
+          },
+          "province": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "num_pln_approved": {
+            "type": "number"
+          },
+          "num_pln_draft": {
+            "type": "number"
+          },
+          "project_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "contract_ref",
+          "status",
+          "name",
+          "id",
+          "counterparty",
+          "project_name",
+          "approved_to_date",
+          "total_works",
+          "percentage_complete",
+          "my_role",
+          "draft_claim",
+          "number_of_claims",
+          "prac_complete_ind",
+          "final_complete_ind",
+          "claim_pc_ind",
+          "claim_fc_ind",
+          "self_assess_ind",
+          "variable_budget_ind",
+          "province",
+          "country",
+          "num_pln_approved",
+          "num_pln_draft",
+          "project_id"
+        ]
+      },
+      "ProjectCreateDto": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/ProjectAddressDto"
+          },
+          "claim_cycle": {
+            "$ref": "#/components/schemas/ProjectClaimCycleDto"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "project_ref": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "commencement_date": {
+            "type": "object"
+          },
+          "completion_date": {
+            "type": "object"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "external_integration_key_secondary": {
+            "type": "string"
+          },
+          "enforce_approval_seq_ind": {
+            "type": "boolean"
+          },
+          "authority_limits_enabled_ind": {
+            "type": "boolean"
+          },
+          "multiapproval_ind": {
+            "type": "boolean"
+          },
+          "deleted_at": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "claim_cycle",
+          "name",
+          "tax_rate"
+        ]
+      },
+      "ProjectUpdateDto": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "$ref": "#/components/schemas/ProjectPermissionsDto"
+          },
+          "address": {
+            "$ref": "#/components/schemas/ProjectAddressDto"
+          },
+          "claim_cycle": {
+            "$ref": "#/components/schemas/ProjectClaimCycleDto"
+          },
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "project_ref": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "commencement_date": {
+            "type": "object"
+          },
+          "completion_date": {
+            "type": "object"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "external_integration_key_secondary": {
+            "type": "string"
+          },
+          "enforce_approval_seq_ind": {
+            "type": "boolean"
+          },
+          "authority_limits_enabled_ind": {
+            "type": "boolean"
+          },
+          "multiapproval_ind": {
+            "type": "boolean"
+          },
+          "deleted_at": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "permissions",
+          "address",
+          "claim_cycle",
+          "id",
+          "name",
+          "tax_rate"
+        ]
+      },
+      "ContractAddressDto": {
+        "type": "object",
+        "properties": {
+          "province": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "ContractRetentionItemDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "PCT ON ALL",
+              "MAX DOLLAR",
+              "BANK GTEE"
+            ],
+            "type": "string",
+            "description": "Retention type"
+          },
+          "percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "accumulation": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "cap": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "type",
+          "percent",
+          "accumulation",
+          "cap"
+        ]
+      },
+      "ContractRetentionDto": {
+        "type": "object",
+        "properties": {
+          "original": {
+            "$ref": "#/components/schemas/ContractRetentionItemDto"
+          },
+          "variation": {
+            "$ref": "#/components/schemas/ContractRetentionItemDto"
+          },
+          "contra": {
+            "$ref": "#/components/schemas/ContractRetentionItemDto"
+          },
+          "release": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "original",
+          "variation",
+          "contra",
+          "release"
+        ]
+      },
+      "ContractRoleDto": {
+        "type": "object",
+        "properties": {
+          "contract_role_type": {
+            "type": "string",
+            "enum": [
+              "CLAIMANT",
+              "RESPONDENT"
+            ]
+          },
+          "organisation_id": {
+            "type": "number"
+          },
+          "organisation_entity_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "contract_role_type",
+          "organisation_id",
+          "organisation_entity_id"
+        ]
+      },
+      "ContractlineLineDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Use negative value to create a new line"
+          },
+          "type": {
+            "type": "LINE",
+            "enum": []
+          },
+          "created_by_organisation": {
+            "type": "number"
+          },
+          "ret_excl_ind": {
+            "type": "boolean"
+          },
+          "tax_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "variable_budget_ind": {
+            "type": "boolean"
+          },
+          "lump_sum_ind": {
+            "type": "boolean"
+          },
+          "unit_type": {
+            "type": "string"
+          },
+          "qty": {
+            "type": "number"
+          },
+          "rate": {
+            "type": "number"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "external_integration_key_secondary": {
+            "type": "string"
+          },
+          "external_integration_key_tertiary": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "deleted_at": {
+            "type": "string"
+          },
+          "forecast_ind": {
+            "type": "boolean"
+          },
+          "locked_ind": {
+            "type": "boolean"
+          },
+          "recoverable_amount": {
+            "type": "number"
+          },
+          "recoverable_ind": {
+            "type": "boolean"
+          },
+          "recoverable_reason": {
+            "type": "string"
+          },
+          "subcontractor_ref_code": {
+            "type": "string"
+          },
+          "var_origination_ref": {
+            "type": "string"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "created_by_organisation",
+          "ret_excl_ind",
+          "tax_rate",
+          "variable_budget_ind",
+          "lump_sum_ind",
+          "unit_type",
+          "qty",
+          "rate",
+          "external_integration_key_primary",
+          "external_integration_key_secondary",
+          "external_integration_key_tertiary",
+          "created_at",
+          "deleted_at",
+          "forecast_ind",
+          "locked_ind",
+          "recoverable_amount",
+          "recoverable_ind",
+          "recoverable_reason",
+          "subcontractor_ref_code",
+          "var_origination_ref",
+          "line_ref_code",
+          "description"
+        ]
+      },
+      "ContractlineNoteDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "NOTE",
+            "enum": []
+          },
+          "id": {
+            "type": "string"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "id",
+          "line_ref_code",
+          "description"
+        ]
+      },
+      "ContractlineHeadingDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "HEADING",
+            "enum": []
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ContractlineLineDto"
+                },
+                {
+                  "$ref": "#/components/schemas/ContractlineNoteDto"
+                }
+              ]
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "nodes",
+          "id",
+          "line_ref_code",
+          "description"
+        ]
+      },
+      "ContractlineSectionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "SECTION",
+            "enum": []
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ContractlineLineDto"
+                },
+                {
+                  "$ref": "#/components/schemas/ContractlineNoteDto"
+                },
+                {
+                  "$ref": "#/components/schemas/ContractlineHeadingDto"
+                }
+              ]
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "nodes",
+          "id",
+          "line_ref_code",
+          "description"
+        ]
+      },
+      "ContractInvitationDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "md_email": {
+            "type": "string"
+          },
+          "md_name": {
+            "type": "string"
+          },
+          "md_phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "province",
+          "country",
+          "city",
+          "address1",
+          "postcode",
+          "md_email",
+          "md_name",
+          "md_phone"
+        ]
+      },
+      "ContractClaimScheduleDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Use negative number for new schedule."
+          },
+          "due_date": {
+            "type": "string"
+          },
+          "end_date": {
+            "type": "string"
+          },
+          "reminder_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "due_date",
+          "end_date",
+          "reminder_date"
+        ]
+      },
+      "ContractClaimCycleDto": {
+        "type": "object",
+        "properties": {
+          "claim_schedules": {
+            "description": "Only required if reminder_schedule = CUSTOM; Remove items from the list to delete them;",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractClaimScheduleDto"
+            }
+          },
+          "fortnightly_start_date": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Only relevant if reminder_schedule is FORTNIGHTLY"
+          },
+          "reminder_days_pre_due_date": {
+            "type": "number",
+            "description": "Only relevant if reminder_schedule is FORTNIGHTLY"
+          },
+          "period_end_from_due_date": {
+            "type": "number",
+            "description": "Only relevant if reminder_schedule is FORTNIGHTLY"
+          },
+          "reminder_schedule": {
+            "type": "string",
+            "enum": [
+              "PROJECT_DEFAULT",
+              "MONTHLY",
+              "FORTNIGHTLY",
+              "CUSTOM"
+            ]
+          },
+          "reminder_day_of_month": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 31
+          },
+          "period_end_day_of_month": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 31
+          },
+          "claim_due_day_of_month": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 31
+          }
+        },
+        "required": [
+          "claim_schedules",
+          "reminder_schedule",
+          "reminder_day_of_month"
+        ]
+      },
+      "ContractCreateDto": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "Contract Reference"
+          },
+          "contract_basis": {
+            "enum": [
+              "LUMP_SUM",
+              "UNIT_OF_MEASURE"
+            ],
+            "type": "string",
+            "description": "Contract basis type"
+          },
+          "address": {
+            "$ref": "#/components/schemas/ContractAddressDto"
+          },
+          "retention": {
+            "$ref": "#/components/schemas/ContractRetentionDto"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractRoleDto"
+            }
+          },
+          "lineitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractlineSectionDto"
+            }
+          },
+          "invitation": {
+            "description": "Only required if roles.length = 1",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ContractInvitationDto"
+              }
+            ]
+          },
+          "claim_cycle": {
+            "$ref": "#/components/schemas/ContractClaimCycleDto"
+          },
+          "project_id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "contract_signed_date": {
+            "type": "string"
+          },
+          "commencement_date": {
+            "type": "string"
+          },
+          "completion_date": {
+            "type": "string"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "dlp_num_days": {
+            "type": "number"
+          },
+          "vat_reverse_charge_ind": {
+            "type": "boolean"
+          },
+          "days_to_approve": {
+            "type": "number"
+          },
+          "days_to_pay": {
+            "type": "number"
+          },
+          "prac_complete_min_pct": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "ref",
+          "contract_basis",
+          "address",
+          "retention",
+          "roles",
+          "lineitems",
+          "invitation",
+          "claim_cycle",
+          "project_id",
+          "name",
+          "tax_rate",
+          "external_integration_key_primary",
+          "dlp_num_days",
+          "vat_reverse_charge_ind",
+          "days_to_approve",
+          "days_to_pay",
+          "prac_complete_min_pct"
+        ]
+      },
+      "ContractTotalsAtdDto": {
+        "type": "object",
+        "properties": {
+          "contract_works": {
+            "type": "number"
+          },
+          "materials_on_site": {
+            "type": "number"
+          },
+          "contra_charges": {
+            "type": "number"
+          },
+          "approved_variations": {
+            "type": "number"
+          },
+          "other_variations": {
+            "type": "number"
+          },
+          "rejected_variations": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "retention": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "contract_works",
+          "materials_on_site",
+          "contra_charges",
+          "approved_variations",
+          "other_variations",
+          "rejected_variations",
+          "total",
+          "retention"
+        ]
+      },
+      "ContractTotalsWcDto": {
+        "type": "object",
+        "properties": {
+          "contract_works": {
+            "type": "number"
+          },
+          "contra_charges": {
+            "type": "number"
+          },
+          "approved_variations": {
+            "type": "number"
+          },
+          "other_variations": {
+            "type": "number"
+          },
+          "rejected_variations": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "contract_works",
+          "contra_charges",
+          "approved_variations",
+          "other_variations",
+          "rejected_variations",
+          "total"
+        ]
+      },
+      "ContractTotalsDto": {
+        "type": "object",
+        "properties": {
+          "approved_to_date": {
+            "$ref": "#/components/schemas/ContractTotalsAtdDto"
+          },
+          "when_complete": {
+            "$ref": "#/components/schemas/ContractTotalsWcDto"
+          }
+        },
+        "required": [
+          "approved_to_date",
+          "when_complete"
+        ]
+      },
+      "ContractCounterpartyPrimaryContactDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "mobile_phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "mobile_phone"
+        ]
+      },
+      "ContractCounterpartyDto": {
+        "type": "object",
+        "properties": {
+          "primary_contact": {
+            "$ref": "#/components/schemas/ContractCounterpartyPrimaryContactDto"
+          },
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "trading_name": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "business_number": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "primary_contact",
+          "id",
+          "name",
+          "trading_name",
+          "address1",
+          "address2",
+          "city",
+          "postcode",
+          "province",
+          "country",
+          "business_number"
+        ]
+      },
+      "ContractDto": {
+        "type": "object",
+        "properties": {
+          "contract_status": {
+            "enum": [
+              "DRAFT",
+              "ACTIVE",
+              "DELETED",
+              "ARCHIVE"
+            ],
+            "type": "string",
+            "description": "Contract status"
+          },
+          "contract_basis": {
+            "enum": [
+              "LUMP_SUM",
+              "UNIT_OF_MEASURE"
+            ],
+            "type": "string",
+            "description": "Contract basis type"
+          },
+          "claim_cycle": {
+            "$ref": "#/components/schemas/ContractClaimCycleDto"
+          },
+          "address": {
+            "$ref": "#/components/schemas/ContractAddressDto"
+          },
+          "labour_tax_ind": {
+            "type": "boolean",
+            "description": "CIS withholding"
+          },
+          "retention": {
+            "$ref": "#/components/schemas/ContractRetentionDto"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractRoleDto"
+            }
+          },
+          "lineitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractlineSectionDto"
+            }
+          },
+          "variationitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractlineSectionDto"
+            }
+          },
+          "totals": {
+            "$ref": "#/components/schemas/ContractTotalsDto"
+          },
+          "counterparty": {
+            "$ref": "#/components/schemas/ContractCounterpartyDto"
+          },
+          "id": {
+            "type": "number"
+          },
+          "organisation_id": {
+            "type": "number"
+          },
+          "project_id": {
+            "type": "number"
+          },
+          "project_category_id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dlp_num_days": {
+            "type": "number"
+          },
+          "first_claim_seq_no": {
+            "type": "string"
+          },
+          "prac_complete_ind": {
+            "type": "boolean"
+          },
+          "final_complete_ind": {
+            "type": "boolean"
+          },
+          "prac_complete_min_pct": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "submission_instruction": {
+            "type": "string"
+          },
+          "self_assess_ind": {
+            "type": "boolean"
+          },
+          "rcti": {
+            "type": "boolean"
+          },
+          "compliance_enabled_ind": {
+            "type": "boolean"
+          },
+          "deleted_at": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "discount_percentage": {
+            "type": "number"
+          },
+          "labour_tax_rate": {
+            "type": "number"
+          },
+          "days_to_approve": {
+            "type": "number"
+          },
+          "days_to_pay": {
+            "type": "number"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "pln_deadline_days_before": {
+            "type": "number"
+          },
+          "materials_ind": {
+            "type": "boolean"
+          },
+          "prac_complete_date": {
+            "type": "boolean"
+          },
+          "enforce_variation_headings": {
+            "type": "boolean"
+          },
+          "discount_coefficient": {
+            "type": "number"
+          },
+          "my_role": {
+            "enum": [
+              "CLAIMANT",
+              "RESPONDENT"
+            ],
+            "type": "string"
+          },
+          "can_delete": {
+            "type": "boolean"
+          },
+          "contract_signed_date": {
+            "type": "string"
+          },
+          "commencement_date": {
+            "type": "string"
+          },
+          "completion_date": {
+            "type": "string"
+          },
+          "vat_reverse_charge_ind": {
+            "type": "boolean"
+          },
+          "organisation_contract_type_id": {
+            "type": "number"
+          },
+          "has_materiallines": {
+            "type": "boolean"
+          },
+          "contract_summary": {
+            "type": "object"
+          },
+          "variable_budget_ind": {
+            "type": "boolean"
+          },
+          "has_draft_claim": {
+            "type": "object"
+          },
+          "claim_prefix_ref": {
+            "type": "string"
+          },
+          "invoice_creator": {
+            "enum": [
+              "CLAIMANT",
+              "RESPONDENT"
+            ],
+            "type": "string"
+          },
+          "trade_type_id": {
+            "type": "number"
+          },
+          "rcti_footer": {
+            "type": "string"
+          },
+          "rcti_landscape": {
+            "type": "boolean"
+          },
+          "integration_metadata": {
+            "type": "object"
+          },
+          "suggested_users": {
+            "type": "object"
+          },
+          "email_enabled_ind": {
+            "type": "boolean"
+          },
+          "claim_charge_waived_ind": {
+            "type": "boolean"
+          },
+          "max_approval_override_ind": {
+            "type": "boolean"
+          },
+          "variation_negotiation": {
+            "type": "boolean"
+          },
+          "invited_user_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "contract_status",
+          "contract_basis",
+          "claim_cycle",
+          "address",
+          "labour_tax_ind",
+          "retention",
+          "roles",
+          "lineitems",
+          "variationitems",
+          "totals",
+          "counterparty",
+          "id",
+          "organisation_id",
+          "project_id",
+          "project_category_id",
+          "name",
+          "dlp_num_days",
+          "first_claim_seq_no",
+          "prac_complete_ind",
+          "final_complete_ind",
+          "prac_complete_min_pct",
+          "created_at",
+          "external_integration_key_primary",
+          "submission_instruction",
+          "self_assess_ind",
+          "rcti",
+          "compliance_enabled_ind",
+          "deleted_at",
+          "ref",
+          "discount_percentage",
+          "labour_tax_rate",
+          "days_to_approve",
+          "days_to_pay",
+          "tax_rate",
+          "pln_deadline_days_before",
+          "materials_ind",
+          "prac_complete_date",
+          "enforce_variation_headings",
+          "discount_coefficient",
+          "my_role",
+          "can_delete",
+          "vat_reverse_charge_ind",
+          "organisation_contract_type_id",
+          "has_materiallines",
+          "contract_summary",
+          "variable_budget_ind",
+          "has_draft_claim",
+          "claim_prefix_ref",
+          "invoice_creator",
+          "trade_type_id",
+          "rcti_footer",
+          "rcti_landscape",
+          "integration_metadata",
+          "suggested_users",
+          "email_enabled_ind",
+          "claim_charge_waived_ind",
+          "max_approval_override_ind",
+          "variation_negotiation",
+          "invited_user_id"
+        ]
+      },
+      "ContractSummaryDto": {
+        "type": "object",
+        "properties": {
+          "contract_status": {
+            "enum": [
+              "DRAFT",
+              "ACTIVE",
+              "DELETED",
+              "ARCHIVE"
+            ],
+            "type": "string",
+            "description": "Contract status"
+          },
+          "contract_basis": {
+            "enum": [
+              "LUMP_SUM",
+              "UNIT_OF_MEASURE"
+            ],
+            "type": "string",
+            "description": "Contract basis type"
+          },
+          "totals": {
+            "$ref": "#/components/schemas/ContractTotalsDto"
+          },
+          "id": {
+            "type": "number"
+          },
+          "organisation_id": {
+            "type": "number"
+          },
+          "project_id": {
+            "type": "number"
+          },
+          "project_category_id": {
+            "type": "number"
+          },
+          "organisation_contract_type_id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "invoice_creator": {
+            "type": "string",
+            "enum": [
+              "CLAIMANT",
+              "RESPONDENT"
+            ]
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "contract_summary": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "contract_status",
+          "contract_basis",
+          "totals",
+          "id",
+          "organisation_id",
+          "project_id",
+          "project_category_id",
+          "organisation_contract_type_id",
+          "name",
+          "invoice_creator",
+          "created_at",
+          "contract_summary"
+        ]
+      },
+      "PayappsListDto": {
+        "type": "object",
+        "properties": {
+          "total_this_claim": {
+            "type": "number",
+            "deprecated": true
+          },
+          "id": {
+            "type": "number"
+          },
+          "claim_seq_no": {
+            "type": "number"
+          },
+          "claim_status": {
+            "type": "string"
+          },
+          "claimant_invoice_ref": {
+            "type": "string"
+          },
+          "retention_this_claim": {
+            "type": "number"
+          },
+          "submitted_at": {
+            "type": "string"
+          },
+          "approved_at": {
+            "type": "string"
+          },
+          "approval_due_date": {
+            "type": "string"
+          },
+          "progresspay2": {
+            "type": "object"
+          },
+          "pln": {
+            "type": "object"
+          },
+          "total_approved_this_claim": {
+            "type": "number"
+          },
+          "total_claimed": {
+            "type": "number"
+          },
+          "total_approved": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "total_this_claim",
+          "id",
+          "claim_seq_no",
+          "claim_status",
+          "claimant_invoice_ref",
+          "retention_this_claim",
+          "submitted_at",
+          "approved_at",
+          "approval_due_date",
+          "progresspay2",
+          "pln",
+          "total_approved_this_claim",
+          "total_claimed",
+          "total_approved"
+        ]
+      },
+      "ContractUpdateDto": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "Contract Reference"
+          },
+          "contract_basis": {
+            "enum": [
+              "LUMP_SUM",
+              "UNIT_OF_MEASURE"
+            ],
+            "type": "string",
+            "description": "Contract basis type"
+          },
+          "address": {
+            "$ref": "#/components/schemas/ContractAddressDto"
+          },
+          "retention": {
+            "$ref": "#/components/schemas/ContractRetentionDto"
+          },
+          "lineitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractlineSectionDto"
+            }
+          },
+          "variationitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractlineSectionDto"
+            }
+          },
+          "claim_cycle": {
+            "$ref": "#/components/schemas/ContractClaimCycleDto"
+          },
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "contract_signed_date": {
+            "type": "string"
+          },
+          "commencement_date": {
+            "type": "string"
+          },
+          "completion_date": {
+            "type": "string"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "dlp_num_days": {
+            "type": "number"
+          },
+          "vat_reverse_charge_ind": {
+            "type": "boolean"
+          },
+          "days_to_approve": {
+            "type": "number"
+          },
+          "days_to_pay": {
+            "type": "number"
+          },
+          "prac_complete_min_pct": {
+            "type": "number"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ref",
+          "contract_basis",
+          "address",
+          "retention",
+          "lineitems",
+          "variationitems",
+          "claim_cycle",
+          "id",
+          "name",
+          "tax_rate",
+          "dlp_num_days",
+          "vat_reverse_charge_ind",
+          "days_to_approve",
+          "days_to_pay",
+          "prac_complete_min_pct",
+          "external_integration_key_primary"
+        ]
+      },
+      "ContractLinkDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "external_integration_key_primary"
+        ]
+      },
+      "ContractVariationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "contract_id": {
+            "type": "number"
+          },
+          "line_ref_code": {
+            "type": "number"
+          },
+          "description": {
+            "type": "number"
+          },
+          "qty": {
+            "type": "number"
+          },
+          "rate": {
+            "type": "number"
+          },
+          "tax_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "ret_excl_ind": {
+            "type": "number"
+          },
+          "lump_sum_ind": {
+            "type": "number"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "external_integration_key_secondary": {
+            "type": "string"
+          },
+          "external_integration_key_tertiary": {
+            "type": "string"
+          },
+          "approval_status": {
+            "enum": [
+              "APPROVED",
+              "PENDING",
+              "REJECTED"
+            ],
+            "type": "string"
+          },
+          "unit_type": {
+            "type": "string"
+          },
+          "subcontractor_ref_code": {
+            "type": "string"
+          },
+          "var_origination_ref": {
+            "type": "string"
+          },
+          "forecast_ind": {
+            "type": "boolean"
+          },
+          "private_ind": {
+            "type": "boolean"
+          },
+          "recoverable_ind": {
+            "type": "boolean"
+          },
+          "recoverable_reason": {
+            "type": "string"
+          },
+          "recoverable_amount": {
+            "type": "number"
+          },
+          "budget_status": {
+            "type": "string"
+          },
+          "heading": {
+            "type": "string"
+          },
+          "claimant_projected_rate": {
+            "type": "number"
+          },
+          "claimant_projected_qty": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "created_by_organisation": {
+            "type": "number"
+          },
+          "locked_ind": {
+            "type": "boolean"
+          },
+          "variable_budget_ind": {
+            "type": "boolean"
+          },
+          "discount_ind": {
+            "type": "boolean"
+          },
+          "can_delete": {
+            "type": "boolean"
+          },
+          "can_edit_extref": {
+            "type": "boolean"
+          },
+          "read_only": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "contract_id",
+          "line_ref_code",
+          "description",
+          "qty",
+          "rate",
+          "tax_rate",
+          "ret_excl_ind",
+          "lump_sum_ind",
+          "external_integration_key_primary",
+          "external_integration_key_secondary",
+          "external_integration_key_tertiary",
+          "approval_status",
+          "unit_type",
+          "subcontractor_ref_code",
+          "var_origination_ref",
+          "forecast_ind",
+          "private_ind",
+          "recoverable_ind",
+          "recoverable_reason",
+          "recoverable_amount",
+          "budget_status",
+          "heading",
+          "claimant_projected_rate",
+          "claimant_projected_qty",
+          "created_at",
+          "created_by_organisation",
+          "locked_ind",
+          "variable_budget_ind",
+          "discount_ind",
+          "can_delete",
+          "can_edit_extref",
+          "read_only"
+        ]
+      },
+      "ContractLineDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "contract_id": {
+            "type": "number"
+          },
+          "line_ref_code": {
+            "type": "number"
+          },
+          "description": {
+            "type": "number"
+          },
+          "qty": {
+            "type": "number"
+          },
+          "rate": {
+            "type": "number"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "ret_excl_ind": {
+            "type": "number"
+          },
+          "lump_sum_ind": {
+            "type": "number"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "external_integration_key_secondary": {
+            "type": "string"
+          },
+          "external_integration_key_tertiary": {
+            "type": "string"
+          },
+          "approval_status": {
+            "type": "string",
+            "enum": [
+              "APPROVED",
+              "PENDING",
+              "REJECTED"
+            ]
+          },
+          "unit_type": {
+            "type": "string"
+          },
+          "subcontractor_ref_code": {
+            "type": "string"
+          },
+          "var_origination_ref": {
+            "type": "string"
+          },
+          "forecast_ind": {
+            "type": "boolean"
+          },
+          "private_ind": {
+            "type": "boolean"
+          },
+          "recoverable_ind": {
+            "type": "boolean"
+          },
+          "recoverable_reason": {
+            "type": "string"
+          },
+          "recoverable_amount": {
+            "type": "number"
+          },
+          "budget_status": {
+            "type": "string"
+          },
+          "heading": {
+            "type": "string"
+          },
+          "claimant_projected_rate": {
+            "type": "number"
+          },
+          "claimant_projected_qty": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "deleted_at": {
+            "type": "string"
+          },
+          "created_by_organisation": {
+            "type": "number"
+          },
+          "locked_ind": {
+            "type": "boolean"
+          },
+          "variable_budget_ind": {
+            "type": "boolean"
+          },
+          "discount_ind": {
+            "type": "boolean"
+          },
+          "can_delete": {
+            "type": "boolean"
+          },
+          "can_edit_extref": {
+            "type": "boolean"
+          },
+          "read_only": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "contract_id",
+          "line_ref_code",
+          "description",
+          "qty",
+          "rate",
+          "tax_rate",
+          "ret_excl_ind",
+          "lump_sum_ind",
+          "external_integration_key_primary",
+          "external_integration_key_secondary",
+          "external_integration_key_tertiary",
+          "approval_status",
+          "unit_type",
+          "subcontractor_ref_code",
+          "var_origination_ref",
+          "forecast_ind",
+          "private_ind",
+          "recoverable_ind",
+          "recoverable_reason",
+          "recoverable_amount",
+          "budget_status",
+          "heading",
+          "claimant_projected_rate",
+          "claimant_projected_qty",
+          "created_at",
+          "deleted_at",
+          "created_by_organisation",
+          "locked_ind",
+          "variable_budget_ind",
+          "discount_ind",
+          "can_delete",
+          "can_edit_extref",
+          "read_only"
+        ]
+      },
+      "ContractVariationsDto": {
+        "type": "object",
+        "properties": {
+          "variationitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractlineSectionDto"
+            }
+          },
+          "id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "variationitems",
+          "id"
+        ]
+      },
+      "ContractLineitemsDto": {
+        "type": "object",
+        "properties": {
+          "lineitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractlineSectionDto"
+            }
+          },
+          "id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "lineitems",
+          "id"
+        ]
+      },
+      "ContractPublishDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "PayappStatusGroupEnum": {
+        "type": "string",
+        "enum": [
+          "all",
+          "pending",
+          "approved"
+        ]
+      },
+      "PayappsListItemDto": {
+        "type": "object",
+        "properties": {
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "project_ref": {
+            "type": "string"
+          },
+          "project_name": {
+            "type": "string"
+          },
+          "contract_id": {
+            "type": "number"
+          },
+          "contract_ref": {
+            "type": "string"
+          },
+          "contract_name": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "vat_reverse_charge_ind": {
+            "type": "boolean"
+          },
+          "counterparty_role": {
+            "type": "object"
+          },
+          "counterparty_name": {
+            "type": "string"
+          },
+          "claim_status": {
+            "type": "string"
+          },
+          "claim_id": {
+            "type": "number"
+          },
+          "claim_seq_no": {
+            "type": "number"
+          },
+          "claimant_invoice_ref": {
+            "type": "string"
+          },
+          "retention_to_date": {
+            "type": "number"
+          },
+          "discount_calc": {
+            "type": "number"
+          },
+          "discount_calc_at_approved": {
+            "type": "number"
+          },
+          "labour_claimed_to_date": {
+            "type": "number"
+          },
+          "labour_approved_to_date": {
+            "type": "number"
+          },
+          "claim_as_at": {
+            "type": "string"
+          },
+          "submitted_at": {
+            "type": "string"
+          },
+          "approved_at": {
+            "type": "string"
+          },
+          "approval_due_date": {
+            "type": "string"
+          },
+          "payment_due_date": {
+            "type": "string"
+          },
+          "final_payment_due_date": {
+            "type": "string"
+          },
+          "lines_claimed": {
+            "type": "number"
+          },
+          "lines_approved": {
+            "type": "number"
+          },
+          "materials_claimed": {
+            "type": "number"
+          },
+          "materials_approved": {
+            "type": "number"
+          },
+          "contra_this_approve": {
+            "type": "number"
+          },
+          "contra_approved": {
+            "type": "number"
+          },
+          "tax_this_claim_submitted": {
+            "type": "number"
+          },
+          "pln_is_draft": {
+            "type": "boolean"
+          },
+          "pln_variance_this_claim": {
+            "type": "number"
+          },
+          "pp_status": {
+            "type": "string"
+          },
+          "lines_this_claim": {
+            "type": "number"
+          },
+          "lines_this_approve": {
+            "type": "number"
+          },
+          "discount_this_claim": {
+            "type": "number"
+          },
+          "previous_discount": {
+            "type": "number"
+          },
+          "retention_claimed_this_claim": {
+            "type": "number"
+          },
+          "retention_approved_this_claim": {
+            "type": "number"
+          },
+          "previous_retention": {
+            "type": "number"
+          },
+          "variations_this_claim": {
+            "type": "number"
+          },
+          "materials_this_claim": {
+            "type": "number"
+          },
+          "materials_this_approve": {
+            "type": "number"
+          },
+          "tax_this_claim_approved": {
+            "type": "number"
+          },
+          "claimed": {
+            "type": "number"
+          },
+          "assessed": {
+            "type": "number"
+          },
+          "gross_approved": {
+            "type": "number"
+          },
+          "non_labour_to_date": {
+            "type": "number"
+          },
+          "net_approved_to_date": {
+            "type": "number"
+          },
+          "previous_gross_approved": {
+            "type": "number"
+          },
+          "previous_net_approved_to_date": {
+            "type": "number"
+          },
+          "net_approved_before_taxes": {
+            "type": "number"
+          },
+          "discounted_total_this_claim": {
+            "type": "number"
+          },
+          "sc_total_projected_amount": {
+            "type": "number"
+          },
+          "mc_total_projected_amount": {
+            "type": "number"
+          },
+          "varations_this_approve": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "external_integration_key_primary",
+          "project_ref",
+          "project_name",
+          "contract_id",
+          "contract_ref",
+          "contract_name",
+          "country",
+          "vat_reverse_charge_ind",
+          "counterparty_role",
+          "counterparty_name",
+          "claim_status",
+          "claim_id",
+          "claim_seq_no",
+          "claimant_invoice_ref",
+          "retention_to_date",
+          "discount_calc",
+          "discount_calc_at_approved",
+          "labour_claimed_to_date",
+          "labour_approved_to_date",
+          "claim_as_at",
+          "submitted_at",
+          "approved_at",
+          "approval_due_date",
+          "payment_due_date",
+          "final_payment_due_date",
+          "lines_claimed",
+          "lines_approved",
+          "materials_claimed",
+          "materials_approved",
+          "contra_this_approve",
+          "contra_approved",
+          "tax_this_claim_submitted",
+          "pln_is_draft",
+          "pln_variance_this_claim",
+          "pp_status",
+          "lines_this_claim",
+          "lines_this_approve",
+          "discount_this_claim",
+          "previous_discount",
+          "retention_claimed_this_claim",
+          "retention_approved_this_claim",
+          "previous_retention",
+          "variations_this_claim",
+          "materials_this_claim",
+          "materials_this_approve",
+          "tax_this_claim_approved",
+          "claimed",
+          "assessed",
+          "gross_approved",
+          "non_labour_to_date",
+          "net_approved_to_date",
+          "previous_gross_approved",
+          "previous_net_approved_to_date",
+          "net_approved_before_taxes",
+          "discounted_total_this_claim",
+          "sc_total_projected_amount",
+          "mc_total_projected_amount",
+          "varations_this_approve"
+        ]
+      },
+      "MateriallinesLineDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "created_by_organisation": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "unit_type": {
+            "type": "string"
+          },
+          "qty_at_claimed": {
+            "type": "number"
+          },
+          "rate_at_claimed": {
+            "type": "number"
+          },
+          "qty_at_approved": {
+            "type": "number"
+          },
+          "rate_at_approved": {
+            "type": "number"
+          },
+          "prev_approved": {
+            "type": "number"
+          },
+          "modification_reason": {
+            "type": "number"
+          },
+          "modification_reason_comment": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "deleted_at": {
+            "type": "string"
+          },
+          "total_activity_count": {
+            "type": "number"
+          },
+          "new_activity_count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "created_by_organisation",
+          "description",
+          "line_ref_code",
+          "unit_type",
+          "qty_at_claimed",
+          "rate_at_claimed",
+          "qty_at_approved",
+          "rate_at_approved",
+          "prev_approved",
+          "modification_reason",
+          "modification_reason_comment",
+          "created_at",
+          "deleted_at",
+          "total_activity_count",
+          "new_activity_count"
+        ]
+      },
+      "MateriallinesHeadingDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MateriallinesLineDto"
+            }
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "nodes",
+          "line_ref_code",
+          "description"
+        ]
+      },
+      "MateriallinesSectionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "description": {
+            "type": "string"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MateriallinesHeadingDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "description",
+          "line_ref_code",
+          "nodes"
+        ]
+      },
+      "ClaimlinesLineDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "claimline": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "claimline"
+        ]
+      },
+      "ClaimlinesHeadingDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClaimlinesLineDto"
+            }
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "nodes",
+          "line_ref_code",
+          "description"
+        ]
+      },
+      "ClaimlineSectionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "description": {
+            "type": "string"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ClaimlinesLineDto"
+                },
+                {
+                  "$ref": "#/components/schemas/ClaimlinesHeadingDto"
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "description",
+          "nodes"
+        ]
+      },
+      "PayappsSummaryItemDto": {
+        "type": "object",
+        "properties": {
+          "original_works": {
+            "type": "number"
+          },
+          "contra_charges": {
+            "type": "number"
+          },
+          "materials": {
+            "type": "number"
+          },
+          "variations_approved": {
+            "type": "number"
+          },
+          "variations_on_account": {
+            "type": "number"
+          },
+          "variations_rejected": {
+            "type": "number"
+          },
+          "revised_works": {
+            "type": "number"
+          },
+          "revised_works_and_voa": {
+            "type": "number"
+          },
+          "discount": {
+            "type": "number"
+          },
+          "discounted_total": {
+            "type": "number"
+          },
+          "retention_withheld": {
+            "type": "number"
+          },
+          "retention_released": {
+            "type": "number"
+          },
+          "cash_retention": {
+            "type": "number"
+          },
+          "cash_retention_tax": {
+            "type": "number"
+          },
+          "net_claim_excl_tax": {
+            "type": "number"
+          },
+          "financeable_tax": {
+            "type": "number"
+          },
+          "tax": {
+            "type": "number"
+          },
+          "net_claim_incl_tax": {
+            "type": "number"
+          },
+          "discount_coefficient": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "original_works",
+          "contra_charges",
+          "materials",
+          "variations_approved",
+          "variations_on_account",
+          "variations_rejected",
+          "revised_works",
+          "revised_works_and_voa",
+          "discount",
+          "discounted_total",
+          "retention_withheld",
+          "retention_released",
+          "cash_retention",
+          "cash_retention_tax",
+          "net_claim_excl_tax",
+          "financeable_tax",
+          "tax",
+          "net_claim_incl_tax",
+          "discount_coefficient"
+        ]
+      },
+      "PayappsSummaryDto": {
+        "type": "object",
+        "properties": {
+          "this_claim": {
+            "$ref": "#/components/schemas/PayappsSummaryItemDto"
+          }
+        },
+        "required": [
+          "this_claim"
+        ]
+      },
+      "PayappActionHistoryDto": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "number"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "action": {
+            "type": "object"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "first_name",
+          "last_name",
+          "action",
+          "created_at"
+        ]
+      },
+      "PayappPlnDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "eligible": {
+            "type": "boolean"
+          },
+          "approved_at": {
+            "type": "string"
+          },
+          "deleted_at": {
+            "type": "string"
+          },
+          "adjustments": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "eligible",
+          "approved_at",
+          "deleted_at",
+          "adjustments"
+        ]
+      },
+      "PayappDto": {
+        "type": "object",
+        "properties": {
+          "materialitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MateriallinesSectionDto"
+            }
+          },
+          "lineitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClaimlineSectionDto"
+            }
+          },
+          "summary": {
+            "$ref": "#/components/schemas/PayappsSummaryDto"
+          },
+          "id": {
+            "type": "number"
+          },
+          "contract_id": {
+            "type": "number"
+          },
+          "organisation_id": {
+            "type": "number"
+          },
+          "claim_seq_no": {
+            "type": "number"
+          },
+          "claim_ref": {
+            "type": "string"
+          },
+          "claim_status": {
+            "type": "string"
+          },
+          "my_role": {
+            "type": "string",
+            "enum": [
+              "CLAIMANT",
+              "RESPONDENT"
+            ]
+          },
+          "claim_as_at_start": {
+            "type": "string"
+          },
+          "claim_as_at": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "submitted_at": {
+            "type": "string"
+          },
+          "approved_at": {
+            "type": "string"
+          },
+          "approval_due_date": {
+            "type": "string"
+          },
+          "variation_negotiation_enabled": {
+            "type": "boolean"
+          },
+          "claimant_invoice_ref": {
+            "type": "string"
+          },
+          "retention_calc": {
+            "type": "number"
+          },
+          "retention_calc_at_approved": {
+            "type": "number"
+          },
+          "retention_release_ind": {
+            "type": "boolean"
+          },
+          "retention_applied": {
+            "type": "number"
+          },
+          "retention_withheld_override": {
+            "type": "number"
+          },
+          "retention_excl_release_this_claim": {
+            "type": "number"
+          },
+          "retention_this_claim": {
+            "type": "number"
+          },
+          "retention_release_requested": {
+            "type": "number"
+          },
+          "retention_released": {
+            "type": "number"
+          },
+          "retention_released_mod_reason": {
+            "type": "string"
+          },
+          "retention_withheld_mod_reason": {
+            "type": "string"
+          },
+          "labour_claimed_to_date": {
+            "type": "number"
+          },
+          "labour_approved_to_date": {
+            "type": "number"
+          },
+          "labour_claimed_this_claim": {
+            "type": "number"
+          },
+          "labour_approved_this_claim": {
+            "type": "number"
+          },
+          "labour_previous_approved": {
+            "type": "number"
+          },
+          "labour_mod_reason": {
+            "type": "string"
+          },
+          "days_to_approve": {
+            "type": "number"
+          },
+          "claim_limit_reached": {
+            "type": "boolean"
+          },
+          "pay_per_claim_credits": {
+            "type": "number"
+          },
+          "acknowledge_instructions": {
+            "type": "boolean"
+          },
+          "action_history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayappActionHistoryDto"
+            }
+          },
+          "contraitems": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "variationitems": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "pln": {
+            "$ref": "#/components/schemas/PayappPlnDto"
+          },
+          "total_works": {
+            "type": "number"
+          },
+          "total_approved_to_date": {
+            "type": "number"
+          },
+          "total_this_claim": {
+            "type": "number"
+          },
+          "total_claimed": {
+            "type": "number"
+          },
+          "total_approved": {
+            "type": "number"
+          },
+          "total_claimed_orig": {
+            "type": "number"
+          },
+          "total_claimed_var": {
+            "type": "number"
+          },
+          "total_approved_orig": {
+            "type": "number"
+          },
+          "total_approved_var": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "materialitems",
+          "lineitems",
+          "summary",
+          "id",
+          "contract_id",
+          "organisation_id",
+          "claim_seq_no",
+          "claim_ref",
+          "claim_status",
+          "my_role",
+          "claim_as_at_start",
+          "claim_as_at",
+          "created_at",
+          "submitted_at",
+          "approved_at",
+          "approval_due_date",
+          "variation_negotiation_enabled",
+          "claimant_invoice_ref",
+          "retention_calc",
+          "retention_calc_at_approved",
+          "retention_release_ind",
+          "retention_applied",
+          "retention_withheld_override",
+          "retention_excl_release_this_claim",
+          "retention_this_claim",
+          "retention_release_requested",
+          "retention_released",
+          "retention_released_mod_reason",
+          "retention_withheld_mod_reason",
+          "labour_claimed_to_date",
+          "labour_approved_to_date",
+          "labour_claimed_this_claim",
+          "labour_approved_this_claim",
+          "labour_previous_approved",
+          "labour_mod_reason",
+          "days_to_approve",
+          "claim_limit_reached",
+          "pay_per_claim_credits",
+          "acknowledge_instructions",
+          "action_history",
+          "contraitems",
+          "variationitems",
+          "tax_rate",
+          "pln",
+          "total_works",
+          "total_approved_to_date",
+          "total_this_claim",
+          "total_claimed",
+          "total_approved",
+          "total_claimed_orig",
+          "total_claimed_var",
+          "total_approved_orig",
+          "total_approved_var"
+        ]
+      },
+      "PayappsInvoiceDetailsPrevToDateDto": {
+        "type": "object",
+        "properties": {
+          "gross_approved": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "gross_approved"
+        ]
+      },
+      "PayappsInvoiceDetailsThisPeriodDto": {
+        "type": "object",
+        "properties": {
+          "discount": {
+            "type": "number"
+          },
+          "gross_approved": {
+            "type": "number"
+          },
+          "gross_approved_qty": {
+            "type": "number"
+          },
+          "gross_claimed": {
+            "type": "number"
+          },
+          "gross_claimed_qty": {
+            "type": "number"
+          },
+          "gross_tax": {
+            "type": "number"
+          },
+          "net": {
+            "type": "number"
+          },
+          "net_tax": {
+            "type": "number"
+          },
+          "retention_withheld": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "discount",
+          "gross_approved",
+          "gross_approved_qty",
+          "gross_claimed",
+          "gross_claimed_qty",
+          "gross_tax",
+          "net",
+          "net_tax",
+          "retention_withheld"
+        ]
+      },
+      "PayappsInvoiceDetailsDto": {
+        "type": "object",
+        "properties": {
+          "previous_to_date": {
+            "$ref": "#/components/schemas/PayappsInvoiceDetailsPrevToDateDto"
+          },
+          "this_period": {
+            "$ref": "#/components/schemas/PayappsInvoiceDetailsThisPeriodDto"
+          }
+        },
+        "required": [
+          "previous_to_date",
+          "this_period"
+        ]
+      },
+      "PayappsLineDto": {
+        "type": "object",
+        "properties": {
+          "this_claim_amt": {
+            "type": "number",
+            "deprecated": true,
+            "description": "Refer to invoice_details object"
+          },
+          "this_claim_qty": {
+            "type": "number",
+            "deprecated": true,
+            "description": "Refer to invoice_details object"
+          },
+          "this_approve_amt": {
+            "type": "number",
+            "deprecated": true,
+            "description": "Refer to invoice_details object"
+          },
+          "this_approve_qty": {
+            "type": "number",
+            "deprecated": true,
+            "description": "Refer to invoice_details object"
+          },
+          "this_claim_pct": {
+            "type": "number",
+            "deprecated": true
+          },
+          "this_approve_pct": {
+            "type": "number",
+            "deprecated": true
+          },
+          "discount_rounded": {
+            "type": "number",
+            "deprecated": true,
+            "description": "Refer to invoice_details object"
+          },
+          "retention_withheld_rounded": {
+            "type": "number",
+            "deprecated": true,
+            "description": "Refer to invoice_details object"
+          },
+          "net_amount_rounded": {
+            "type": "number",
+            "deprecated": true,
+            "description": "Refer to invoice_details object"
+          },
+          "tax_rounded": {
+            "type": "number",
+            "deprecated": true,
+            "description": "Refer to invoice_details object"
+          },
+          "id": {
+            "type": "number"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "rate": {
+            "type": "number"
+          },
+          "contract_line_type": {
+            "type": "object"
+          },
+          "ret_excl_ind": {
+            "type": "boolean"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "approval_status": {
+            "type": "object"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "created_by_organisation": {
+            "type": "number"
+          },
+          "locked_ind": {
+            "type": "boolean"
+          },
+          "external_integration_key_primary": {
+            "type": "string"
+          },
+          "external_integration_key_secondary": {
+            "type": "string"
+          },
+          "external_integration_key_tertiary": {
+            "type": "string"
+          },
+          "qty": {
+            "type": "number"
+          },
+          "lump_sum_ind": {
+            "type": "boolean"
+          },
+          "unit_type": {
+            "type": "string"
+          },
+          "variable_budget_ind": {
+            "type": "boolean"
+          },
+          "subcontractor_ref_code": {
+            "type": "string"
+          },
+          "var_origination_ref": {
+            "type": "string"
+          },
+          "deleted_at": {
+            "type": "string"
+          },
+          "forecast_ind": {
+            "type": "boolean"
+          },
+          "private_ind": {
+            "type": "boolean"
+          },
+          "recoverable_ind": {
+            "type": "boolean"
+          },
+          "budget_status": {
+            "type": "object"
+          },
+          "recoverable_reason": {
+            "type": "string"
+          },
+          "discount_ind": {
+            "type": "boolean"
+          },
+          "recoverable_amount": {
+            "type": "number"
+          },
+          "claimant_projected_rate": {
+            "type": "number"
+          },
+          "claimant_projected_qty": {
+            "type": "number"
+          },
+          "contract_line_id": {
+            "type": "number"
+          },
+          "claim_amt": {
+            "type": "number"
+          },
+          "claim_pct": {
+            "type": "number"
+          },
+          "approve_amt": {
+            "type": "number"
+          },
+          "approve_pct": {
+            "type": "number"
+          },
+          "rate_at_claimed": {
+            "type": "number"
+          },
+          "rate_at_approved": {
+            "type": "number"
+          },
+          "status_at_approved": {
+            "type": "object"
+          },
+          "modification_reason": {
+            "type": "string"
+          },
+          "modification_reason_comment": {
+            "type": "string"
+          },
+          "claim_qty": {
+            "type": "number"
+          },
+          "status_at_claimed": {
+            "type": "object"
+          },
+          "qty_at_claimed": {
+            "type": "number"
+          },
+          "approve_qty": {
+            "type": "number"
+          },
+          "qty_at_approved": {
+            "type": "number"
+          },
+          "historical_ind": {
+            "type": "boolean"
+          },
+          "ret_excl_ind_at_claimed": {
+            "type": "number"
+          },
+          "ret_excl_ind_at_approved": {
+            "type": "number"
+          },
+          "claimant_modification_reason": {
+            "type": "string"
+          },
+          "claimant_modification_reason_comment": {
+            "type": "string"
+          },
+          "claim_val_at_end": {
+            "type": "number"
+          },
+          "claim_line_id": {
+            "type": "number"
+          },
+          "contract_claimant_projected_rate": {
+            "type": "number"
+          },
+          "contract_claimant_projected_qty": {
+            "type": "number"
+          },
+          "prev_claimant_projected_rate": {
+            "type": "number"
+          },
+          "prev_claimant_projected_qty": {
+            "type": "number"
+          },
+          "claimant_projected_amt": {
+            "type": "number"
+          },
+          "claim_projected_pct": {
+            "type": "number"
+          },
+          "claim_projected_qty": {
+            "type": "number"
+          },
+          "approved_to_date": {
+            "type": "number"
+          },
+          "approved_to_date_qty": {
+            "type": "number"
+          },
+          "when_complete": {
+            "type": "number"
+          },
+          "total_activity_count": {
+            "type": "number"
+          },
+          "new_activity_count": {
+            "type": "number"
+          },
+          "approve_val_at_end": {
+            "type": "number"
+          },
+          "respondent_projected_amt": {
+            "type": "number"
+          },
+          "projected_difference": {
+            "type": "number"
+          },
+          "difference_amt": {
+            "type": "number"
+          },
+          "this_claim_projected_pct": {
+            "type": "number"
+          },
+          "this_claim_projected_qty": {
+            "type": "number"
+          },
+          "locked_amount": {
+            "type": "boolean"
+          },
+          "modification_reason_display": {
+            "type": "string"
+          },
+          "approved_to_date_pct": {
+            "type": "number"
+          },
+          "pln_revised_amt": {
+            "type": "number"
+          },
+          "pln_qty": {
+            "type": "number"
+          },
+          "pln_variance": {
+            "type": "number"
+          },
+          "pln_this_approved_amt": {
+            "type": "number"
+          },
+          "pln_approve_amt": {
+            "type": "number"
+          },
+          "works_value": {
+            "type": "number"
+          },
+          "variance_amt": {
+            "type": "number"
+          },
+          "variance_qty": {
+            "type": "number"
+          },
+          "variance_rate": {
+            "type": "number"
+          },
+          "invoice_details": {
+            "$ref": "#/components/schemas/PayappsInvoiceDetailsDto"
+          }
+        },
+        "required": [
+          "this_claim_amt",
+          "this_claim_qty",
+          "this_approve_amt",
+          "this_approve_qty",
+          "this_claim_pct",
+          "this_approve_pct",
+          "discount_rounded",
+          "retention_withheld_rounded",
+          "net_amount_rounded",
+          "tax_rounded",
+          "id",
+          "line_ref_code",
+          "description",
+          "rate",
+          "contract_line_type",
+          "ret_excl_ind",
+          "tax_rate",
+          "approval_status",
+          "created_at",
+          "created_by_organisation",
+          "locked_ind",
+          "external_integration_key_primary",
+          "external_integration_key_secondary",
+          "external_integration_key_tertiary",
+          "qty",
+          "lump_sum_ind",
+          "unit_type",
+          "variable_budget_ind",
+          "subcontractor_ref_code",
+          "var_origination_ref",
+          "deleted_at",
+          "forecast_ind",
+          "private_ind",
+          "recoverable_ind",
+          "budget_status",
+          "recoverable_reason",
+          "discount_ind",
+          "recoverable_amount",
+          "claimant_projected_rate",
+          "claimant_projected_qty",
+          "contract_line_id",
+          "claim_amt",
+          "claim_pct",
+          "approve_amt",
+          "approve_pct",
+          "rate_at_claimed",
+          "rate_at_approved",
+          "status_at_approved",
+          "modification_reason",
+          "modification_reason_comment",
+          "claim_qty",
+          "status_at_claimed",
+          "qty_at_claimed",
+          "approve_qty",
+          "qty_at_approved",
+          "historical_ind",
+          "ret_excl_ind_at_claimed",
+          "ret_excl_ind_at_approved",
+          "claimant_modification_reason",
+          "claimant_modification_reason_comment",
+          "claim_val_at_end",
+          "claim_line_id",
+          "contract_claimant_projected_rate",
+          "contract_claimant_projected_qty",
+          "prev_claimant_projected_rate",
+          "prev_claimant_projected_qty",
+          "claimant_projected_amt",
+          "claim_projected_pct",
+          "claim_projected_qty",
+          "approved_to_date",
+          "approved_to_date_qty",
+          "when_complete",
+          "total_activity_count",
+          "new_activity_count",
+          "approve_val_at_end",
+          "respondent_projected_amt",
+          "projected_difference",
+          "difference_amt",
+          "this_claim_projected_pct",
+          "this_claim_projected_qty",
+          "locked_amount",
+          "modification_reason_display",
+          "approved_to_date_pct",
+          "pln_revised_amt",
+          "pln_qty",
+          "pln_variance",
+          "pln_this_approved_amt",
+          "pln_approve_amt",
+          "works_value",
+          "variance_amt",
+          "variance_qty",
+          "variance_rate",
+          "invoice_details"
+        ]
+      },
+      "VariationTotalsDto": {
+        "type": "object",
+        "properties": {
+          "works_value": {
+            "type": "number"
+          },
+          "approved_to_date_pct": {
+            "type": "number"
+          },
+          "approved_to_date": {
+            "type": "number"
+          },
+          "claim_pct": {
+            "type": "number"
+          },
+          "claim_amt": {
+            "type": "number"
+          },
+          "approve_pct": {
+            "type": "number"
+          },
+          "approve_amt": {
+            "type": "number"
+          },
+          "this_claim_pct": {
+            "type": "number"
+          },
+          "this_claim_amt": {
+            "type": "number"
+          },
+          "this_approve_pct": {
+            "type": "number"
+          },
+          "this_approve_amt": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "works_value",
+          "approved_to_date_pct",
+          "approved_to_date",
+          "claim_pct",
+          "claim_amt",
+          "approve_pct",
+          "approve_amt",
+          "this_claim_pct",
+          "this_claim_amt",
+          "this_approve_pct",
+          "this_approve_amt"
+        ]
+      },
+      "ContralinesLineDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "created_by_organisation": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "contra_entity_id": {
+            "type": "number"
+          },
+          "contra_line_id": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "previous_amount": {
+            "type": "number"
+          },
+          "modification_reason": {
+            "type": "string"
+          },
+          "modification_reason_comment": {
+            "type": "string"
+          },
+          "entity_created_at": {
+            "type": "string"
+          },
+          "deleted_at": {
+            "type": "string"
+          },
+          "ret_excl_ind": {
+            "type": "boolean"
+          },
+          "tax_rate": {
+            "type": "number"
+          },
+          "can_delete": {
+            "type": "boolean"
+          },
+          "total_activity_count": {
+            "type": "number"
+          },
+          "new_activity_count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "created_by_organisation",
+          "description",
+          "line_ref_code",
+          "contra_entity_id",
+          "contra_line_id",
+          "amount",
+          "previous_amount",
+          "modification_reason",
+          "modification_reason_comment",
+          "entity_created_at",
+          "deleted_at",
+          "ret_excl_ind",
+          "tax_rate",
+          "can_delete",
+          "total_activity_count",
+          "new_activity_count"
+        ]
+      },
+      "ContralinesHeadingDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContralinesLineDto"
+            }
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "nodes",
+          "line_ref_code",
+          "description"
+        ]
+      },
+      "ContralinesSectionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": []
+          },
+          "description": {
+            "type": "string"
+          },
+          "line_ref_code": {
+            "type": "string"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContralinesHeadingDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "description",
+          "line_ref_code",
+          "nodes"
+        ]
+      },
+      "PayappsInvoicePayappDto": {
+        "type": "object",
+        "properties": {
+          "approved_variation_lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayappsLineDto"
+            }
+          },
+          "approved_variation_totals": {
+            "$ref": "#/components/schemas/VariationTotalsDto"
+          },
+          "rejected_variation_lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayappsLineDto"
+            }
+          },
+          "rejected_variation_totals": {
+            "$ref": "#/components/schemas/VariationTotalsDto"
+          },
+          "other_variation_lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayappsLineDto"
+            }
+          },
+          "other_variation_totals": {
+            "$ref": "#/components/schemas/VariationTotalsDto"
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayappsLineDto"
+            }
+          },
+          "materialitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MateriallinesSectionDto"
+            }
+          },
+          "contraitems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContralinesSectionDto"
+            }
+          },
+          "id": {
+            "type": "number"
+          },
+          "claim_as_at_local": {
+            "type": "string"
+          },
+          "submitted_at_local": {
+            "type": "string"
+          },
+          "approved_at_local": {
+            "type": "string"
+          },
+          "total_works": {
+            "type": "number"
+          },
+          "total_approved_to_date": {
+            "type": "number"
+          },
+          "total_this_claim": {
+            "type": "number"
+          },
+          "total_claimed": {
+            "type": "number"
+          },
+          "total_approved": {
+            "type": "number"
+          },
+          "total_claimed_orig": {
+            "type": "number"
+          },
+          "total_claimed_var": {
+            "type": "number"
+          },
+          "total_approved_orig": {
+            "type": "number"
+          },
+          "total_approved_var": {
+            "type": "number"
+          },
+          "total_works_orig": {
+            "type": "number"
+          },
+          "total_works_var_claimed": {
+            "type": "number"
+          },
+          "total_works_var_approved": {
+            "type": "number"
+          },
+          "total_approved_to_date_orig": {
+            "type": "number"
+          },
+          "total_approved_to_date_var": {
+            "type": "number"
+          },
+          "total_variance_var": {
+            "type": "number"
+          },
+          "total_variance_orig": {
+            "type": "number"
+          },
+          "total_this_claim_orig": {
+            "type": "number"
+          },
+          "total_this_approve_orig": {
+            "type": "number"
+          },
+          "total_approved_to_date_orig_pct": {
+            "type": "number"
+          },
+          "total_claimed_orig_pct": {
+            "type": "number"
+          },
+          "total_approved_orig_pct": {
+            "type": "number"
+          },
+          "total_this_claim_orig_pct": {
+            "type": "number"
+          },
+          "total_this_approve_orig_pct": {
+            "type": "number"
+          },
+          "total_this_claim_var": {
+            "type": "number"
+          },
+          "total_this_approve_var": {
+            "type": "number"
+          },
+          "total_works_var": {
+            "type": "number"
+          },
+          "total_approved_to_date_var_pct": {
+            "type": "number"
+          },
+          "total_claimed_var_pct": {
+            "type": "number"
+          },
+          "total_approved_var_pct": {
+            "type": "number"
+          },
+          "total_this_claim_var_pct": {
+            "type": "number"
+          },
+          "total_this_approve_var_pct": {
+            "type": "number"
+          },
+          "total_works_completed_to_date": {
+            "type": "number"
+          },
+          "total_net_claimed": {
+            "type": "number"
+          },
+          "total_net_approved": {
+            "type": "number"
+          },
+          "total_net_claim_plus_tax": {
+            "type": "number"
+          },
+          "total_net_approve_plus_tax": {
+            "type": "number"
+          },
+          "total_gross_claimed_plus_tax": {
+            "type": "number"
+          },
+          "total_gross_approved_plus_tax": {
+            "type": "number"
+          },
+          "tax_on_gross_claim": {
+            "type": "number"
+          },
+          "tax_on_gross_approve": {
+            "type": "number"
+          },
+          "tax_on_net_claimed": {
+            "type": "number"
+          },
+          "tax_on_net_approved": {
+            "type": "number"
+          },
+          "tax_on_total_works": {
+            "type": "number"
+          },
+          "previous_retention": {
+            "type": "number"
+          },
+          "retention_withheld_override": {
+            "type": "number"
+          },
+          "retention_release_requested": {
+            "type": "number"
+          },
+          "retention_released": {
+            "type": "number"
+          },
+          "retention_release_ind": {
+            "type": "number"
+          },
+          "retention_withheld_mod_reason": {
+            "type": "string"
+          },
+          "retention_released_mod_reason": {
+            "type": "string"
+          },
+          "retention_calc": {
+            "type": "number"
+          },
+          "retention_calc_at_approved": {
+            "type": "number"
+          },
+          "retention_applied": {
+            "type": "number"
+          },
+          "retention_this_claim": {
+            "type": "number"
+          },
+          "retention_excl_release_this_claim": {
+            "type": "number"
+          },
+          "discount_calc": {
+            "type": "number"
+          },
+          "discount_calc_at_approved": {
+            "type": "number"
+          },
+          "discount_previous_approved": {
+            "type": "number"
+          },
+          "labour_claimed_to_date": {
+            "type": "number"
+          },
+          "labour_approved_to_date": {
+            "type": "number"
+          },
+          "labour_mod_reason": {
+            "type": "string"
+          },
+          "labour_previous_approved": {
+            "type": "number"
+          },
+          "labour_claimed_this_claim": {
+            "type": "number"
+          },
+          "labour_approved_this_claim": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "approved_variation_lines",
+          "approved_variation_totals",
+          "rejected_variation_lines",
+          "rejected_variation_totals",
+          "other_variation_lines",
+          "other_variation_totals",
+          "lines",
+          "materialitems",
+          "contraitems",
+          "id",
+          "claim_as_at_local",
+          "submitted_at_local",
+          "approved_at_local",
+          "total_works",
+          "total_approved_to_date",
+          "total_this_claim",
+          "total_claimed",
+          "total_approved",
+          "total_claimed_orig",
+          "total_claimed_var",
+          "total_approved_orig",
+          "total_approved_var",
+          "total_works_orig",
+          "total_works_var_claimed",
+          "total_works_var_approved",
+          "total_approved_to_date_orig",
+          "total_approved_to_date_var",
+          "total_variance_var",
+          "total_variance_orig",
+          "total_this_claim_orig",
+          "total_this_approve_orig",
+          "total_approved_to_date_orig_pct",
+          "total_claimed_orig_pct",
+          "total_approved_orig_pct",
+          "total_this_claim_orig_pct",
+          "total_this_approve_orig_pct",
+          "total_this_claim_var",
+          "total_this_approve_var",
+          "total_works_var",
+          "total_approved_to_date_var_pct",
+          "total_claimed_var_pct",
+          "total_approved_var_pct",
+          "total_this_claim_var_pct",
+          "total_this_approve_var_pct",
+          "total_works_completed_to_date",
+          "total_net_claimed",
+          "total_net_approved",
+          "total_net_claim_plus_tax",
+          "total_net_approve_plus_tax",
+          "total_gross_claimed_plus_tax",
+          "total_gross_approved_plus_tax",
+          "tax_on_gross_claim",
+          "tax_on_gross_approve",
+          "tax_on_net_claimed",
+          "tax_on_net_approved",
+          "tax_on_total_works",
+          "previous_retention",
+          "retention_withheld_override",
+          "retention_release_requested",
+          "retention_released",
+          "retention_release_ind",
+          "retention_withheld_mod_reason",
+          "retention_released_mod_reason",
+          "retention_calc",
+          "retention_calc_at_approved",
+          "retention_applied",
+          "retention_this_claim",
+          "retention_excl_release_this_claim",
+          "discount_calc",
+          "discount_calc_at_approved",
+          "discount_previous_approved",
+          "labour_claimed_to_date",
+          "labour_approved_to_date",
+          "labour_mod_reason",
+          "labour_previous_approved",
+          "labour_claimed_this_claim",
+          "labour_approved_this_claim"
+        ]
+      },
+      "TotalsItemDto": {
+        "type": "object",
+        "properties": {
+          "original_works": {
+            "type": "number"
+          },
+          "contra_charges": {
+            "type": "number"
+          },
+          "materials": {
+            "type": "number"
+          },
+          "variations_approved": {
+            "type": "number"
+          },
+          "variations_on_account": {
+            "type": "number"
+          },
+          "variations_rejected": {
+            "type": "number"
+          },
+          "revised_works": {
+            "type": "number"
+          },
+          "revised_works_and_voa": {
+            "type": "number"
+          },
+          "discount": {
+            "type": "number"
+          },
+          "discounted_total": {
+            "type": "number"
+          },
+          "retention_withheld": {
+            "type": "number"
+          },
+          "retention_released": {
+            "type": "number"
+          },
+          "cash_retention": {
+            "type": "number"
+          },
+          "cash_retention_tax": {
+            "type": "number"
+          },
+          "net_claim_excl_tax": {
+            "type": "number"
+          },
+          "financeable_tax": {
+            "type": "number"
+          },
+          "tax": {
+            "type": "number"
+          },
+          "net_claim_incl_tax": {
+            "type": "number"
+          },
+          "discount_revised_works": {
+            "type": "number"
+          },
+          "discounted_total_revised_works": {
+            "type": "number"
+          },
+          "combined_variations": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "original_works",
+          "contra_charges",
+          "materials",
+          "variations_approved",
+          "variations_on_account",
+          "variations_rejected",
+          "revised_works",
+          "revised_works_and_voa",
+          "discount",
+          "discounted_total",
+          "retention_withheld",
+          "retention_released",
+          "cash_retention",
+          "cash_retention_tax",
+          "net_claim_excl_tax",
+          "financeable_tax",
+          "tax",
+          "net_claim_incl_tax",
+          "discount_revised_works",
+          "discounted_total_revised_works",
+          "combined_variations"
+        ]
+      },
+      "TotalsDto": {
+        "type": "object",
+        "properties": {
+          "when_complete": {
+            "$ref": "#/components/schemas/TotalsItemDto"
+          },
+          "current_claim": {
+            "$ref": "#/components/schemas/TotalsItemDto"
+          },
+          "previous_claim": {
+            "$ref": "#/components/schemas/TotalsItemDto"
+          },
+          "this_claim": {
+            "$ref": "#/components/schemas/TotalsItemDto"
+          },
+          "remaining": {
+            "$ref": "#/components/schemas/TotalsItemDto"
+          },
+          "current_claim_submitted": {
+            "$ref": "#/components/schemas/TotalsItemDto"
+          },
+          "variance": {
+            "$ref": "#/components/schemas/TotalsItemDto"
+          }
+        },
+        "required": [
+          "when_complete",
+          "current_claim",
+          "previous_claim",
+          "this_claim",
+          "remaining",
+          "current_claim_submitted",
+          "variance"
+        ]
+      },
+      "RetentionDto": {
+        "type": "object",
+        "properties": {
+          "released_variance": {
+            "type": "number"
+          },
+          "released_calculated_value": {
+            "type": "number"
+          },
+          "released_adjusted_value": {
+            "type": "number"
+          },
+          "calculated_withheld_value": {
+            "type": "number"
+          },
+          "withheld_adjusted_value": {
+            "type": "number"
+          },
+          "withheld_variance": {
+            "type": "number"
+          },
+          "show_retention": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "released_variance",
+          "released_calculated_value",
+          "released_adjusted_value",
+          "calculated_withheld_value",
+          "withheld_adjusted_value",
+          "withheld_variance",
+          "show_retention"
+        ]
+      },
+      "OrganisationLiteDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "business_number": {
+            "type": "string"
+          },
+          "md_name": {
+            "type": "string"
+          },
+          "md_phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "address1",
+          "address2",
+          "city",
+          "postcode",
+          "province",
+          "business_number",
+          "md_name",
+          "md_phone"
+        ]
+      },
+      "PayappsPdfItemDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "url",
+          "size"
+        ]
+      },
+      "PayappsPdfsDto": {
+        "type": "object",
+        "properties": {
+          "submitted_claim": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          },
+          "approved_claim": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          },
+          "approved_claim_summary": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          },
+          "rcti": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          },
+          "paylate_notice": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          },
+          "cbi": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          },
+          "stat_dec": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          },
+          "dor": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          },
+          "pln": {
+            "$ref": "#/components/schemas/PayappsPdfItemDto"
+          }
+        },
+        "required": [
+          "submitted_claim",
+          "approved_claim",
+          "approved_claim_summary",
+          "rcti",
+          "paylate_notice",
+          "cbi",
+          "stat_dec",
+          "dor",
+          "pln"
+        ]
+      },
+      "PayappsInvoiceDto": {
+        "type": "object",
+        "properties": {
+          "payapp": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PayappsInvoicePayappDto"
+              }
+            ]
+          },
+          "totals": {
+            "$ref": "#/components/schemas/TotalsDto"
+          },
+          "retention": {
+            "$ref": "#/components/schemas/RetentionDto"
+          },
+          "claimant": {
+            "$ref": "#/components/schemas/OrganisationLiteDto"
+          },
+          "respondent": {
+            "$ref": "#/components/schemas/OrganisationLiteDto"
+          },
+          "files": {
+            "$ref": "#/components/schemas/PayappsPdfsDto"
+          }
+        },
+        "required": [
+          "payapp",
+          "totals",
+          "retention",
+          "claimant",
+          "respondent",
+          "files"
+        ]
+      }
+    }
+  }
+}

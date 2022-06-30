@@ -127,13 +127,13 @@ namespace MAD.DataWarehouse.Payapps.Migrations
                             b1.Property<double>("Period_end_day_of_month")
                                 .HasColumnType("float");
 
-                            b1.Property<double>("Period_end_from_due_date")
+                            b1.Property<double?>("Period_end_from_due_date")
                                 .HasColumnType("float");
 
                             b1.Property<double>("Reminder_day_of_month")
                                 .HasColumnType("float");
 
-                            b1.Property<double>("Reminder_days_pre_due_date")
+                            b1.Property<double?>("Reminder_days_pre_due_date")
                                 .HasColumnType("float");
 
                             b1.Property<string>("Reminder_schedule")
@@ -201,7 +201,7 @@ namespace MAD.DataWarehouse.Payapps.Migrations
                                     b2.Property<double>("ProjectDtoId")
                                         .HasColumnType("float");
 
-                                    b2.Property<double>("Id")
+                                    b2.Property<double?>("Id")
                                         .HasColumnType("float");
 
                                     b2.Property<string>("AdditionalProperties")
